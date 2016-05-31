@@ -29,3 +29,23 @@ cd /path/to/web-project && docker-compose stop
 ```
 
 *Next time when we start project containers, use only docker-compose up -d command on project directory.*
+
+# Troubleshoot
+
+- Conflict scripts container when rerun docker-compose up (because we ran it manually) -- just leave it or remove when we have updates for that container
+
+```
+Creating mysite_scripts_1
+
+ERROR: Conflict. The name "/mysite_scripts_1" is already in use by container 356936e2baae4176776cc0db5b735f750e17654b7006f00a514bf0bd47faf121. You have to remove (or rename) that container to be able to reuse that name.
+```
+
+- Couldn't connect to Docker daemon sometimes on Mac OS X -- restart docker-machine then reset ENV on system from commands:
+
+```
+$ docker-machine restart default && eval $(docker-machine env default)
+```
+
+```
+ERROR: Couldn't connect to Docker daemon - you might need to run `docker-machine start default`.
+```
