@@ -1,0 +1,47 @@
+# First deploy on local, need to run this command:
+# docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
+
+
+# Shared volumes for mounting application source code
+data:
+  image: busybox
+  volumes:
+    - .:/data
+
+
+# Database with specific configurations (eg. no strict transactions)
+db:
+  image: aimakun/mysql
+  ports:
+    - "3306"
+  environment:
+    MYSQL_DATABASE: sitename_db ##
+    MYSQL_ROOT_PASSWORD: root ##
+    # MYSQL_USER: clientuser
+    # MYSQL_PASSWORD: clientpassword
+    VIRTUAL_HOST: "sitename.local" ##
+
+
+# Bundle all needed libraries here (eg. locales, phpunit, artisan commands, etc.)
+web:
+  image: aimakun/docker-laravel4-projects
+  ports:
+    - "80"
+  volumes_from:
+    - data
+  links:
+    - db
+  environment:
+    MYSQL_HOST: db
+    SITE_ENV: dev_docker
+    VIRTUAL_HOST: "sitename.local" ##
+  extra_hosts:
+    - "sitename.local:127.0.0.1" ## Extra for wkhtmltopdf to access host itself
+
+
+# Independent applications used in project but using same shared volumes as main app.
+scripts:
+  build: ./docker
+  dockerfile: Dockerfile-scripts # digitallyseamless/nodejs-bower-grunt with source code mounted volumes
+  volumes_from:
+    - data
