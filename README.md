@@ -19,6 +19,7 @@ TODO: Explain how to setup new project environment
 - Run proxy container to handle virtual hosts:
 ```
 docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
+```
 - Run docker-compose to build up environment:
 ```
 cd /path/to/web-project && docker-compose up -d
