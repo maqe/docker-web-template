@@ -9,7 +9,6 @@ It would also support native Docker.
 - Included wkhtmltopdf
 - Included phpunit
 
-
 # Get started
 
 ## First run
@@ -19,6 +18,7 @@ It would also support native Docker.
 - Run proxy container to handle virtual hosts:
 ```
 docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
+```
 - Run docker-compose to build up environment:
 ```
 cd /path/to/web-project && docker-compose up -d
@@ -30,7 +30,7 @@ cd /path/to/web-project && docker-compose stop
 
 *Next time when we start project containers, use only docker-compose up -d command on project directory.*
 
-# Troubleshoot
+# Troubleshooting
 
 - Conflict scripts container when rerun docker-compose up (because we ran it manually) -- just leave it or remove when we have updates for that container
 
