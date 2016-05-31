@@ -2,6 +2,7 @@ This project is for creating PHP / MySQL based applications from Docker Toolbox.
 It would also support native Docker.
 
 Features:
+
 - PHP 5.5 / MySQL 5.6
 - Bundled some PHP extensions needed for PHP based projects (tested on Laravel, Wordpress, Drupal)
 - Supported locales for gettext (English / Swedish in first phase)
@@ -19,7 +20,6 @@ TODO: Explain how to setup new project environment
 - Run proxy container to handle virtual hosts:
 ```
 docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
-```
 - Run docker-compose to build up environment:
 ```
 cd /path/to/web-project && docker-compose up -d
