@@ -1,6 +1,4 @@
-# First deploy on local, need to run this command:
-# docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
-
+# Your project could have own hostname & database by edit lines marked with double sharp (##)
 
 # Shared volumes for mounting application source code
 data:
@@ -35,8 +33,9 @@ web:
     MYSQL_HOST: db
     SITE_ENV: dev_docker
     VIRTUAL_HOST: "sitename.local" ##
+  # Extra for wkhtmltopdf to access host itself
   extra_hosts:
-    - "sitename.local:127.0.0.1" ## Extra for wkhtmltopdf to access host itself
+    - "sitename.local:127.0.0.1" ##
 
 
 # Independent applications used in project but using same shared volumes as main app.
