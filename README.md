@@ -11,13 +11,26 @@ It would also support native Docker.
 
 # Get started
 
+## Setup
+
+- Clone this repository and rename root directory with your own one.
+- Copy your app bootstrap code in `public` directory, eg. `public/index.php`. (You can replace hello world index.php)
+- Other included / required files or libraries can store anywhere within project directory.
+
+### Example cases:
+
+- Drupal: Copy all files in `public` directory. For `drush` (Drupal Shell) it may be in root of project directory.
+- Wordpress: Copy all files in `public` directory.
+- Laravel: It can be project directory itself, we use existing `public/index.php` from Laravel already.
+- Other things like composer.json, bower.json, Gruntfile.js, etc. can be in root of project directory since we may not need them access publicly.
+
 ## First run
 
 - Install Docker Toolbox (or native Docker)
 - Open `Docker Quickstart Terminal` (native Docker use normal bash)
 - Run proxy container to handle virtual hosts:
 ```
-docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy jwilder/nginx-proxy
+docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy --restart always jwilder/nginx-proxy
 ```
 - Run docker-compose to build up environment:
 ```
