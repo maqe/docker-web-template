@@ -30,6 +30,17 @@ cd /path/to/web-project && docker-compose stop
 
 *Next time when we start project containers, use only docker-compose up -d command on project directory.*
 
+## Virtual host access
+
+Currently it can change virtual hostname from `sitename` to your own name in docker-compose.yml file separately for each projects.
+Then you need to add entries in /etc/hosts manually. (C:\Windows\System32\drivers\etc\hosts on Windows)
+
+For example, we have siteA, siteB & siteC projects:
+
+```
+192.168.99.100  siteA.local siteB.local siteC.local
+```
+
 # Troubleshooting
 
 - Conflict scripts container when rerun docker-compose up (because we ran it manually) -- just leave it or remove when we have updates for that container
