@@ -62,6 +62,22 @@ Recommended to access directly through allocated ports from each project contain
 
 In example we can access MySQL database from 192.168.99.100 with port number 32772, 32774, 32776 for project test01, test02, test03. You can setup authentication and database name from docker-compose.yml also.
 
+## Run commands in containers
+
+There are 2 bash scripts for terminal. `web.sh` (for web container) and `scripts.sh` (for one-time scripts container).
+Need to set file permission to 755 (executable) before use:
+```chmod 755 ./web.sh ./scripts.sh```
+
+### Sample commands
+```
+./web.sh composer install
+./web.sh php artisan list
+./web.sh phpunit
+
+./scripts.sh bower install
+./scripts.sh grunt build
+```
+
 # Troubleshooting
 
 - Conflict scripts container when rerun docker-compose up (because we ran it manually) -- just leave it or remove when we have updates for that container
