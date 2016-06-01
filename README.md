@@ -41,6 +41,14 @@ For example, we have siteA, siteB & siteC projects:
 192.168.99.100  siteA.local siteB.local siteC.local
 ```
 
+## Database access
+
+Recommended to access directly through allocated ports from each project containers. You can check out which port used for each projects from `docker ps` command:
+
+![Screen Shot 2016-05-31 at 11.54.25 AM.png](https://bitbucket.org/repo/xag7ER/images/828171332-Screen%20Shot%202016-05-31%20at%2011.54.25%20AM.png)
+
+In example we can access MySQL database from 192.168.99.100 with port number 32772, 32774, 32776 for project test01, test02, test03. You can setup authentication and database name from docker-compose.yml also.
+
 # Troubleshooting
 
 - Conflict scripts container when rerun docker-compose up (because we ran it manually) -- just leave it or remove when we have updates for that container
