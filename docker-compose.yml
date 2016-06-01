@@ -17,7 +17,6 @@ db:
     MYSQL_ROOT_PASSWORD: root ##
     # MYSQL_USER: clientuser
     # MYSQL_PASSWORD: clientpassword
-    VIRTUAL_HOST: "sitename.local" ##
 
 
 # Bundle all needed libraries here (eg. locales, phpunit, artisan commands, etc.)
