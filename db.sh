@@ -18,12 +18,12 @@ if [[ -z $dbpassword ]]
 	dbpassword=$(docker exec ${project}_db_1 bash -c 'echo $MYSQL_ROOT_PASSWORD')
 fi
 
-cp ./docker/db-template.spf ./docker/project.spf
+cp ./docker/db-template.spf $TMPDIR/project.spf
 
 sed -i "" -e "s/PROJECT/${PWD##*/}/g" \
 	-e "s/DB_NAME/${dbname}/g" \
 	-e "s/DB_USER/${dbuser}/g" \
 	-e "s/DB_PASSWORD/${dbpassword}/g" \
-	-e "s/DB_PORT/${dbport}/g" ./docker/project.spf
+	-e "s/DB_PORT/${dbport}/g" $TMPDIR/project.spf
 
-open ./docker/project.spf
+open $TMPDIR/project.spf

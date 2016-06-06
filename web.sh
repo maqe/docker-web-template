@@ -1,3 +1,6 @@
 #!/bin/sh
 
-eval "docker exec -it ${PWD##*/}_web_1 $@"
+project="${PWD##*/}"
+project=${project/-/}
+
+eval "docker exec -it ${project}_web_1 $@"
