@@ -13,8 +13,8 @@ db:
   ports:
     - "3306"
   environment:
-    MYSQL_DATABASE: sitename_db ##
-    MYSQL_ROOT_PASSWORD: root ##
+    MYSQL_DATABASE: sitename_db ## <--- Edit here
+    MYSQL_ROOT_PASSWORD: root ## <--- Edit here
     # MYSQL_USER: clientuser
     # MYSQL_PASSWORD: clientpassword
 
@@ -31,7 +31,7 @@ web:
   environment:
     MYSQL_HOST: db
     SITE_ENV: dev_docker
-    VIRTUAL_HOST: "sitename.local" ##
+    VIRTUAL_HOST: "sitename.local" ## <--- Edit here
   # Extra for wkhtmltopdf to access host itself
   extra_hosts:
-    - "sitename.local:127.0.0.1" ##
+    - "sitename.local:127.0.0.1" ## <--- Edit here
