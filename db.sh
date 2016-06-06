@@ -1,7 +1,7 @@
 #!/bin/sh
 
 project="${PWD##*/}"
-project=${project/-/}
+project=$(echo $project | sed -e "s/-//g")
 
 dbname=$(docker exec ${project}_db_1 bash -c 'echo $MYSQL_DATABASE')
 dbuser=$(docker exec ${project}_db_1 bash -c 'echo $MYSQL_USER')
@@ -18,7 +18,7 @@ if [[ -z $dbpassword ]]
 	dbpassword=$(docker exec ${project}_db_1 bash -c 'echo $MYSQL_ROOT_PASSWORD')
 fi
 
-cp ./docker/db-template.spf $TMPDIR/project.spf
+cp ./.docker/db-template.spf $TMPDIR/project.spf
 
 sed -i "" -e "s/PROJECT/${PWD##*/}/g" \
 	-e "s/DB_NAME/${dbname}/g" \
