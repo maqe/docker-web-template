@@ -18,12 +18,21 @@ if [[ -z $dbpassword ]]
 	dbpassword=$(docker exec ${project}_db_1 bash -c 'echo $MYSQL_ROOT_PASSWORD')
 fi
 
-cp ./.docker/db-template.spf $TMPDIR/project.spf
+if [[ -z $(ls "/c/Program Files/" 2> /dev/null) ]]
+    then
+    cp ./.docker/db-template.spf $TMPDIR/project.spf
 
-sed -i "" -e "s/PROJECT/${PWD##*/}/g" \
-	-e "s/DB_NAME/${dbname}/g" \
-	-e "s/DB_USER/${dbuser}/g" \
-	-e "s/DB_PASSWORD/${dbpassword}/g" \
-	-e "s/DB_PORT/${dbport}/g" $TMPDIR/project.spf
+    sed -i "" -e "s/PROJECT/${PWD##*/}/g" \
+        -e "s/DB_NAME/${dbname}/g" \
+        -e "s/DB_USER/${dbuser}/g" \
+        -e "s/DB_PASSWORD/${dbpassword}/g" \
+        -e "s/DB_PORT/${dbport}/g" $TMPDIR/project.spf
 
-open $TMPDIR/project.spf
+    echo "Open DB connection with Sequel Pro.."
+    open $TMPDIR/project.spf
+
+else
+    echo "Open DB connection with MySQL Workbench.."
+    workbenchbin="/c/Program Files/MySQL/MySQL Workbench 6.3 CE/MySQLWorkbench.exe"
+    eval "start \"\" \"${workbenchbin}\" -query ${dbuser}:{$dbpassword}@192.168.99.100:${dbport}"
+fi
