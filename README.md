@@ -32,6 +32,28 @@ It would also support native Docker.
 ```
 docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy --restart always jwilder/nginx-proxy
 ```
+
+- We also can use Traefik instead of nginx-proxy to gain more control reverse proxy
+```
+docker run -d -p 8080:8080 -p 80:80 \
+-v /dev/null:/etc/traefik/traefik.toml \
+-v /var/run/docker.sock:/var/run/docker.sock \
+--name traefik \
+--restart always \
+traefik --web --docker --docker.domain=docker.dev --logLevel=DEBUG
+
+```
+In this case we should set labels in docker-compose.yml file instead of using ENV variable to set hostname:
+```
+...
+
+web:
+  labels:
+    - "traefik.frontend.rule=Host:hostname.local"
+
+...
+```
+
 - Run docker-compose to build up environment:
 ```
 cd /path/to/web-project && docker-compose up -d
