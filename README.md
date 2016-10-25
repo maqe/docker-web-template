@@ -63,7 +63,9 @@ cd /path/to/web-project && docker-compose up -d
 cd /path/to/web-project && docker-compose stop
 ```
 - Need to set file permission to 755 (executable) for bash script utilities:
-```chmod 755 ./web.sh ./scripts.sh ./db.sh```
+```
+chmod 755 ./web.sh ./scripts.sh ./db.sh
+```
 
 *Next time when we start project containers, use only docker-compose up -d command on project directory.*
 
@@ -80,10 +82,10 @@ For example, we have siteA, siteB & siteC projects:
 
 ## Database access
 
-For Mac OS, Call this command on project directory, tested with installed Sequel Pro:
-```./db.sh```
-
-For Windows we didn't test about this command yet, but you still find host port from `docker ps` command.
+Call this command on project directory, it will open DB connection template on Sequel Pro (Mac OS) or MySQL Workbench (Windows)
+```
+./db.sh
+```
 
 ## Run commands in containers
 
