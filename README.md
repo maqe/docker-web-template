@@ -1,6 +1,10 @@
 This project is for creating PHP / MySQL based applications from Docker Toolbox. (Available on Mac OS / Windows)
 It would also support native Docker.
 
+# Security notices
+
+This template usually use for create development environment. We stil need some security checkup before deploy to production.
+
 # Features
 
 - PHP 5.5 / MySQL 5.6
