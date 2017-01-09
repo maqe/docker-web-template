@@ -75,6 +75,34 @@ chmod 755 ./web.sh ./scripts.sh ./db.sh
 
 ## Virtual host access
 
+We have two ways to tell web browser know local sitename created from Docker:
+1. Use dnsmasq to generate all [domain].dev
+2. Create manually in /etc/hosts file
+
+### Setup dnsmasq from homebrew (Mac OS)
+
+- This method need to install homebrew first `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- Then install dnsmasq from command: `brew install dnsmasq`
+- After brew installed, copy default config: `cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf`
+- Edit conf: `vim /usr/local/etc/dnsmasq.conf`
+  - Add a line:
+`address=/dev/127.0.0.1`
+- Create resolver file for .dev
+  - `sudo mkdir /etc/resolver`
+  - Create dev file:
+  ```
+  sudo tee /etc/resolver/dev >/dev/null <<EOF  
+  nameserver 127.0.0.1  
+  EOF
+  ```
+- All config settled, start dnsmasq service and made it run on every start up: `sudo brew services start dnsmasq`
+- To stop / start launchd service (e.g. reload config):
+  - `sudo launchctl stop homebrew.mxcl.dnsmasq`
+  - `sudo launchctl start homebrew.mxcl.dnsmasq`
+- Test DNS: `dig something.local @127.0.0.1`
+- Add DNS 127.0.0.1 in `Network Preference > Advanced > DNS > +`
+
+### Set hostname manually
 Currently it can change virtual hostname from `sitename` to your own name in docker-compose.yml file separately for each projects.
 Then you need to add entries in /etc/hosts manually. (C:\Windows\System32\drivers\etc\hosts on Windows)
 
