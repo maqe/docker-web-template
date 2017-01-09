@@ -76,6 +76,7 @@ chmod 755 ./web.sh ./scripts.sh ./db.sh
 ## Virtual host access
 
 We have two ways to tell web browser know local sitename created from Docker:
+
 1. Use dnsmasq to generate all [domain].dev
 2. Create manually in /etc/hosts file
 
