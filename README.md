@@ -100,7 +100,7 @@ We have two ways to tell web browser know local sitename created from Docker:
 - To stop / start launchd service (e.g. reload config):
   - `sudo launchctl stop homebrew.mxcl.dnsmasq`
   - `sudo launchctl start homebrew.mxcl.dnsmasq`
-- Test DNS: `dig something.local @127.0.0.1`
+- Test DNS: `dig something.dev @127.0.0.1`
 - Add DNS 127.0.0.1 in `Network Preference > Advanced > DNS > +`
 
 ### Set hostname manually
