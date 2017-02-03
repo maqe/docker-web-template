@@ -88,6 +88,8 @@ We have two ways to tell web browser know local sitename created from Docker:
 - Edit conf: `vim /usr/local/etc/dnsmasq.conf`
   - Add a line:
 `address=/dev/127.0.0.1`
+OR 192.168.99.100 if you're using Docker Toolbox:
+`address=/dev/192.168.99.100`
 - Create resolver file for .dev
   - `sudo mkdir /etc/resolver`
   - Create dev file:
