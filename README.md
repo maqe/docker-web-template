@@ -37,6 +37,11 @@ This template usually use for create development environment. We stil need some 
 docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro --name nginx-proxy --restart always jwilder/nginx-proxy
 ```
 
+Alternative way is using auto-proxy (build from golang, faster response) instead:
+```
+docker run -d -p 80:80 -p 443:443 -v /var/run/docker.sock:/var/run/docker.sock:ro --name auto-proxy --restart always ayufan/auto-proxy
+```
+
 - We also can use Traefik instead of nginx-proxy to gain more control reverse proxy
 ```
 docker run -d -p 8080:8080 -p 80:80 \
