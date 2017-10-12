@@ -89,7 +89,7 @@ We have two ways to tell web browser know local sitename created from Docker:
 
 - This method need to install homebrew first `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 - Then install dnsmasq from command: `brew install dnsmasq`
-- After brew installed, copy default config: `cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf`
+- ~~After brew installed, copy default config: `cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf`~~ *No need to copy sample for current version now*
 - Edit conf: `vim /usr/local/etc/dnsmasq.conf`
   - Add a line:
 `address=/dev/127.0.0.1`
